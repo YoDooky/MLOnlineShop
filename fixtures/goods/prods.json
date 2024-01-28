@@ -1,0 +1,422 @@
+[
+  {
+    "model": "goods.products",
+    "pk": 1,
+    "fields": {
+      "name": "Corsair RM850x",
+      "slug": "corsair-rm850x",
+      "description": "850W 80+ Gold Certified Modular Power Supply",
+      "image": "",
+      "price": "129.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 9
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 2,
+    "fields": {
+      "name": "EVGA SuperNOVA 750 G5",
+      "slug": "evga-supernova-750-g5",
+      "description": "750W 80+ Gold Fully Modular Power Supply",
+      "image": "",
+      "price": "119.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 9
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 3,
+    "fields": {
+      "name": "Seasonic Focus GX-650",
+      "slug": "seasonic-focus-gx-650",
+      "description": "650W 80+ Gold Fully Modular Power Supply",
+      "image": "",
+      "price": "99.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 9
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 4,
+    "fields": {
+      "name": "Thermaltake Toughpower GF1 750W",
+      "slug": "thermaltake-toughpower-gf1-750w",
+      "description": "750W 80+ Gold Fully Modular Power Supply",
+      "image": "",
+      "price": "109.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 9
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 5,
+    "fields": {
+      "name": "be quiet! Straight Power 11 850W",
+      "slug": "be-quiet-straight-power-11-850w",
+      "description": "850W 80+ Gold Fully Modular Power Supply",
+      "image": "",
+      "price": "139.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 9
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 6,
+    "fields": {
+      "name": "Samsung 970 EVO Plus 1TB",
+      "slug": "samsung-970-evo-plus-1tb",
+      "description": "NVMe M.2 Internal SSD",
+      "image": "",
+      "price": "149.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 7
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 7,
+    "fields": {
+      "name": "Seagate Barracuda 2TB",
+      "slug": "seagate-barracuda-2tb",
+      "description": "SATA 6Gb/s 3.5-Inch Internal Hard Drive",
+      "image": "",
+      "price": "69.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 7
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 8,
+    "fields": {
+      "name": "Crucial MX500 500GB",
+      "slug": "crucial-mx500-500gb",
+      "description": "SATA 2.5-Inch Internal SSD",
+      "image": "",
+      "price": "79.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 7
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 9,
+    "fields": {
+      "name": "Western Digital Black 4TB",
+      "slug": "western-digital-black-4tb",
+      "description": "7200 RPM SATA 6Gb/s 3.5-Inch Internal HDD",
+      "image": "",
+      "price": "149.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 7
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 10,
+    "fields": {
+      "name": "Adata XPG SX8200 Pro 512GB",
+      "slug": "adata-xpg-sx8200-pro-512gb",
+      "description": "NVMe M.2 Internal SSD",
+      "image": "",
+      "price": "89.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 7
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 11,
+    "fields": {
+      "name": "NVIDIA GeForce RTX 3080",
+      "slug": "nvidia-geforce-rtx-3080",
+      "description": "10GB GDDR6X Graphics Card",
+      "image": "",
+      "price": "699.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 6
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 12,
+    "fields": {
+      "name": "AMD Radeon RX 6800 XT",
+      "slug": "amd-radeon-rx-6800-xt",
+      "description": "16GB GDDR6 Graphics Card",
+      "image": "",
+      "price": "649.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 6
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 13,
+    "fields": {
+      "name": "EVGA GeForce GTX 1660 Super",
+      "slug": "evga-geforce-gtx-1660-super",
+      "description": "6GB GDDR5 Graphics Card",
+      "image": "",
+      "price": "249.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 6
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 14,
+    "fields": {
+      "name": "ASUS ROG Strix RTX 3070",
+      "slug": "asus-rog-strix-rtx-3070",
+      "description": "8GB GDDR6 Graphics Card",
+      "image": "",
+      "price": "599.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 6
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 15,
+    "fields": {
+      "name": "MSI Gaming X Trio RX 6700 XT",
+      "slug": "msi-gaming-x-trio-rx-6700-xt",
+      "description": "12GB GDDR6 Graphics Card",
+      "image": "",
+      "price": "499.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 6
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 16,
+    "fields": {
+      "name": "Corsair Vengeance LPX 16GB",
+      "slug": "corsair-vengeance-lpx-16gb",
+      "description": "DDR4 3200MHz CL16 Desktop Memory",
+      "image": "",
+      "price": "79.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 5
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 17,
+    "fields": {
+      "name": "G.Skill Ripjaws V 32GB",
+      "slug": "gskill-ripjaws-v-32gb",
+      "description": "DDR4 3600MHz CL16 Desktop Memory",
+      "image": "",
+      "price": "129.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 5
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 18,
+    "fields": {
+      "name": "Crucial Ballistix RGB 16GB",
+      "slug": "crucial-ballistix-rgb-16gb",
+      "description": "DDR4 3200MHz CL16 Desktop Memory",
+      "image": "",
+      "price": "89.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 5
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 19,
+    "fields": {
+      "name": "Team T-FORCE Vulcan Z 8GB",
+      "slug": "team-t-force-vulcan-z-8gb",
+      "description": "DDR4 3000MHz CL16 Desktop Memory",
+      "image": "",
+      "price": "49.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 5
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 20,
+    "fields": {
+      "name": "HyperX Fury RGB 64GB",
+      "slug": "hyperx-fury-rgb-64gb",
+      "description": "DDR4 3200MHz CL16 Desktop Memory",
+      "image": "",
+      "price": "249.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 5
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 21,
+    "fields": {
+      "name": "ASUS ROG Strix B550-F Gaming",
+      "slug": "asus-rog-strix-b550-f-gaming",
+      "description": "ATX Motherboard with PCIe 4.0 support",
+      "image": "",
+      "price": "189.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 4
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 22,
+    "fields": {
+      "name": "GIGABYTE B450 AORUS Elite",
+      "slug": "gigabyte-b450-aorus-elite",
+      "description": "ATX Motherboard with RGB Fusion",
+      "image": "",
+      "price": "99.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 4
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 23,
+    "fields": {
+      "name": "MSI MPG B550 Gaming Edge WiFi",
+      "slug": "msi-mpg-b550-gaming-edge-wifi",
+      "description": "ATX Motherboard with Wi-Fi 6 support",
+      "image": "",
+      "price": "169.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 4
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 24,
+    "fields": {
+      "name": "ASRock B460M Pro4",
+      "slug": "asrock-b460m-pro4",
+      "description": "Micro ATX Motherboard with Intel B460 chipset",
+      "image": "",
+      "price": "79.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 4
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 25,
+    "fields": {
+      "name": "ASUS Prime X570-Pro",
+      "slug": "asus-prime-x570-pro",
+      "description": "ATX Motherboard with PCIe 4.0 and Aura Sync",
+      "image": "",
+      "price": "219.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 4
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 26,
+    "fields": {
+      "name": "Intel Core i9-10900K",
+      "slug": "intel-core-i9-10900k",
+      "description": "10-Core, 20-Thread, 3.7 GHz (5.3 GHz Turbo) Processor",
+      "image": "",
+      "price": "499.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 3
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 27,
+    "fields": {
+      "name": "AMD Ryzen 7 5800X",
+      "slug": "amd-ryzen-7-5800x",
+      "description": "8-Core, 16-Thread, 3.8 GHz (4.7 GHz Boost) Processor",
+      "image": "",
+      "price": "429.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 3
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 28,
+    "fields": {
+      "name": "Intel Core i5-10600K",
+      "slug": "intel-core-i5-10600k",
+      "description": "6-Core, 12-Thread, 4.1 GHz (4.8 GHz Turbo) Processor",
+      "image": "",
+      "price": "249.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 3
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 29,
+    "fields": {
+      "name": "AMD Ryzen 9 5950X",
+      "slug": "amd-ryzen-9-5950x",
+      "description": "16-Core, 32-Thread, 3.4 GHz (4.9 GHz Boost) Processor",
+      "image": "",
+      "price": "799.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 3
+    }
+  },
+  {
+    "model": "goods.products",
+    "pk": 30,
+    "fields": {
+      "name": "Intel Core i3-10100",
+      "slug": "intel-core-i3-10100",
+      "description": "4-Core, 8-Thread, 3.6 GHz Processor",
+      "image": "",
+      "price": "119.99",
+      "discount": "0.00",
+      "quantity": 0,
+      "category": 3
+    }
+  }
+]
