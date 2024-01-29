@@ -6,10 +6,10 @@
       "name": "Corsair RM850x",
       "slug": "corsair-rm850x",
       "description": "850W 80+ Gold Certified Modular Power Supply",
-      "image": "",
+      "image": "goods_images/corsair-rm850x.jpg",
       "price": "129.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "15.00",
+      "quantity": 10,
       "category": 9
     }
   },
@@ -20,10 +20,10 @@
       "name": "EVGA SuperNOVA 750 G5",
       "slug": "evga-supernova-750-g5",
       "description": "750W 80+ Gold Fully Modular Power Supply",
-      "image": "",
+      "image": "goods_images/evga-supernova-750-g5.jpg",
       "price": "119.99",
       "discount": "0.00",
-      "quantity": 0,
+      "quantity": 1,
       "category": 9
     }
   },
@@ -34,10 +34,10 @@
       "name": "Seasonic Focus GX-650",
       "slug": "seasonic-focus-gx-650",
       "description": "650W 80+ Gold Fully Modular Power Supply",
-      "image": "",
+      "image": "goods_images/seasonic-focus-gx-650.jpg",
       "price": "99.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "10.00",
+      "quantity": 3,
       "category": 9
     }
   },
@@ -48,10 +48,10 @@
       "name": "Thermaltake Toughpower GF1 750W",
       "slug": "thermaltake-toughpower-gf1-750w",
       "description": "750W 80+ Gold Fully Modular Power Supply",
-      "image": "",
+      "image": "goods_images/thermaltake-toughpower-gf1-750w.jpg",
       "price": "109.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "22.00",
+      "quantity": 17,
       "category": 9
     }
   },
@@ -62,10 +62,10 @@
       "name": "be quiet! Straight Power 11 850W",
       "slug": "be-quiet-straight-power-11-850w",
       "description": "850W 80+ Gold Fully Modular Power Supply",
-      "image": "",
+      "image": "goods_images/be-quiet-straight-power-11-850w.jpg",
       "price": "139.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "5.00",
+      "quantity": 6,
       "category": 9
     }
   },
@@ -76,10 +76,10 @@
       "name": "Samsung 970 EVO Plus 1TB",
       "slug": "samsung-970-evo-plus-1tb",
       "description": "NVMe M.2 Internal SSD",
-      "image": "",
+      "image": "goods_images/samsung-970-evo-plus-1tb.jpg",
       "price": "149.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "10.00",
+      "quantity": 11,
       "category": 7
     }
   },
@@ -90,10 +90,10 @@
       "name": "Seagate Barracuda 2TB",
       "slug": "seagate-barracuda-2tb",
       "description": "SATA 6Gb/s 3.5-Inch Internal Hard Drive",
-      "image": "",
+      "image": "goods_images/seagate-barracuda-2tb.jpg",
       "price": "69.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "35.00",
+      "quantity": 33,
       "category": 7
     }
   },
@@ -104,10 +104,10 @@
       "name": "Crucial MX500 500GB",
       "slug": "crucial-mx500-500gb",
       "description": "SATA 2.5-Inch Internal SSD",
-      "image": "",
+      "image": "goods_images/crucial-mx500-500gb.jpg",
       "price": "79.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "12.00",
+      "quantity": 6,
       "category": 7
     }
   },
@@ -118,10 +118,10 @@
       "name": "Western Digital Black 4TB",
       "slug": "western-digital-black-4tb",
       "description": "7200 RPM SATA 6Gb/s 3.5-Inch Internal HDD",
-      "image": "",
+      "image": "goods_images/western-digital-black-4tb.jpg",
       "price": "149.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "11.00",
+      "quantity": 15,
       "category": 7
     }
   },
@@ -132,10 +132,10 @@
       "name": "Adata XPG SX8200 Pro 512GB",
       "slug": "adata-xpg-sx8200-pro-512gb",
       "description": "NVMe M.2 Internal SSD",
-      "image": "",
+      "image": "goods_images/adata-xpg-sx8200-pro-512gb.jpg",
       "price": "89.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "15.00",
+      "quantity": 22,
       "category": 7
     }
   },
@@ -146,10 +146,10 @@
       "name": "NVIDIA GeForce RTX 3080",
       "slug": "nvidia-geforce-rtx-3080",
       "description": "10GB GDDR6X Graphics Card",
-      "image": "",
+      "image": "goods_images/nvidia-geforce-rtx-3080.jpg",
       "price": "699.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "5.00",
+      "quantity": 5,
       "category": 6
     }
   },
@@ -160,10 +160,10 @@
       "name": "AMD Radeon RX 6800 XT",
       "slug": "amd-radeon-rx-6800-xt",
       "description": "16GB GDDR6 Graphics Card",
-      "image": "",
+      "image": "goods_images/amd-radeon-rx-6800-xt.jpg",
       "price": "649.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "10.00",
+      "quantity": 3,
       "category": 6
     }
   },
@@ -174,10 +174,10 @@
       "name": "EVGA GeForce GTX 1660 Super",
       "slug": "evga-geforce-gtx-1660-super",
       "description": "6GB GDDR5 Graphics Card",
-      "image": "",
+      "image": "goods_images/evga-geforce-gtx-1660-super.jpg",
       "price": "249.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "25.00",
+      "quantity": 14,
       "category": 6
     }
   },
@@ -188,10 +188,10 @@
       "name": "ASUS ROG Strix RTX 3070",
       "slug": "asus-rog-strix-rtx-3070",
       "description": "8GB GDDR6 Graphics Card",
-      "image": "",
+      "image": "goods_images/asus-rog-strix-rtx-3070.jpg",
       "price": "599.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "10.00",
+      "quantity": 3,
       "category": 6
     }
   },
@@ -202,10 +202,10 @@
       "name": "MSI Gaming X Trio RX 6700 XT",
       "slug": "msi-gaming-x-trio-rx-6700-xt",
       "description": "12GB GDDR6 Graphics Card",
-      "image": "",
+      "image": "goods_images/msi-gaming-x-trio-rx-6700-xt.jpg",
       "price": "499.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "20.00",
+      "quantity": 5,
       "category": 6
     }
   },
@@ -216,10 +216,10 @@
       "name": "Corsair Vengeance LPX 16GB",
       "slug": "corsair-vengeance-lpx-16gb",
       "description": "DDR4 3200MHz CL16 Desktop Memory",
-      "image": "",
+      "image": "goods_images/corsair-vengeance-lpx-16gb.jpg",
       "price": "79.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "10.00",
+      "quantity": 10,
       "category": 5
     }
   },
@@ -230,10 +230,10 @@
       "name": "G.Skill Ripjaws V 32GB",
       "slug": "gskill-ripjaws-v-32gb",
       "description": "DDR4 3600MHz CL16 Desktop Memory",
-      "image": "",
+      "image": "goods_images/gskill-ripjaws-v-32gb.jpg",
       "price": "129.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "10.00",
+      "quantity": 5,
       "category": 5
     }
   },
@@ -244,10 +244,10 @@
       "name": "Crucial Ballistix RGB 16GB",
       "slug": "crucial-ballistix-rgb-16gb",
       "description": "DDR4 3200MHz CL16 Desktop Memory",
-      "image": "",
+      "image": "goods_images/crucial-ballistix-rgb-16gb.jpg",
       "price": "89.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "5.00",
+      "quantity": 5,
       "category": 5
     }
   },
@@ -258,10 +258,10 @@
       "name": "Team T-FORCE Vulcan Z 8GB",
       "slug": "team-t-force-vulcan-z-8gb",
       "description": "DDR4 3000MHz CL16 Desktop Memory",
-      "image": "",
+      "image": "goods_images/team-t-force-vulcan-z-8gb.jpg",
       "price": "49.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "15.00",
+      "quantity": 9,
       "category": 5
     }
   },
@@ -272,10 +272,10 @@
       "name": "HyperX Fury RGB 64GB",
       "slug": "hyperx-fury-rgb-64gb",
       "description": "DDR4 3200MHz CL16 Desktop Memory",
-      "image": "",
+      "image": "goods_images/hyperx-fury-rgb-64gb.jpg",
       "price": "249.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "5.00",
+      "quantity": 2,
       "category": 5
     }
   },
@@ -286,10 +286,10 @@
       "name": "ASUS ROG Strix B550-F Gaming",
       "slug": "asus-rog-strix-b550-f-gaming",
       "description": "ATX Motherboard with PCIe 4.0 support",
-      "image": "",
+      "image": "goods_images/asus-rog-strix-b550-f-gaming.jpg",
       "price": "189.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "10.00",
+      "quantity": 12,
       "category": 4
     }
   },
@@ -300,10 +300,10 @@
       "name": "GIGABYTE B450 AORUS Elite",
       "slug": "gigabyte-b450-aorus-elite",
       "description": "ATX Motherboard with RGB Fusion",
-      "image": "",
+      "image": "goods_images/gigabyte-b450-aorus-elite.jpg",
       "price": "99.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "15.00",
+      "quantity": 8,
       "category": 4
     }
   },
@@ -314,10 +314,10 @@
       "name": "MSI MPG B550 Gaming Edge WiFi",
       "slug": "msi-mpg-b550-gaming-edge-wifi",
       "description": "ATX Motherboard with Wi-Fi 6 support",
-      "image": "",
+      "image": "goods_images/msi-mpg-b550-gaming-edge-wifi.jpg",
       "price": "169.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "5.00",
+      "quantity": 5,
       "category": 4
     }
   },
@@ -328,10 +328,10 @@
       "name": "ASRock B460M Pro4",
       "slug": "asrock-b460m-pro4",
       "description": "Micro ATX Motherboard with Intel B460 chipset",
-      "image": "",
+      "image": "goods_images/asrock-b460m-pro4.jpg",
       "price": "79.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "10.00",
+      "quantity": 3,
       "category": 4
     }
   },
@@ -342,10 +342,10 @@
       "name": "ASUS Prime X570-Pro",
       "slug": "asus-prime-x570-pro",
       "description": "ATX Motherboard with PCIe 4.0 and Aura Sync",
-      "image": "",
+      "image": "goods_images/asus-prime-x570-pro.jpg",
       "price": "219.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "11.00",
+      "quantity": 5,
       "category": 4
     }
   },
@@ -356,10 +356,10 @@
       "name": "Intel Core i9-10900K",
       "slug": "intel-core-i9-10900k",
       "description": "10-Core, 20-Thread, 3.7 GHz (5.3 GHz Turbo) Processor",
-      "image": "",
+      "image": "goods_images/intel-core-i9-10900k.jpg",
       "price": "499.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "15.00",
+      "quantity": 11,
       "category": 3
     }
   },
@@ -370,10 +370,10 @@
       "name": "AMD Ryzen 7 5800X",
       "slug": "amd-ryzen-7-5800x",
       "description": "8-Core, 16-Thread, 3.8 GHz (4.7 GHz Boost) Processor",
-      "image": "",
+      "image": "goods_images/amd-ryzen-7-5800x.jpg",
       "price": "429.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "5.00",
+      "quantity": 6,
       "category": 3
     }
   },
@@ -384,10 +384,10 @@
       "name": "Intel Core i5-10600K",
       "slug": "intel-core-i5-10600k",
       "description": "6-Core, 12-Thread, 4.1 GHz (4.8 GHz Turbo) Processor",
-      "image": "",
+      "image": "goods_images/intel-core-i5-10600k.jpg",
       "price": "249.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "10.00",
+      "quantity": 6,
       "category": 3
     }
   },
@@ -398,10 +398,10 @@
       "name": "AMD Ryzen 9 5950X",
       "slug": "amd-ryzen-9-5950x",
       "description": "16-Core, 32-Thread, 3.4 GHz (4.9 GHz Boost) Processor",
-      "image": "",
+      "image": "goods_images/amd-ryzen-9-5950x.jpg",
       "price": "799.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "15.00",
+      "quantity": 8,
       "category": 3
     }
   },
@@ -412,10 +412,10 @@
       "name": "Intel Core i3-10100",
       "slug": "intel-core-i3-10100",
       "description": "4-Core, 8-Thread, 3.6 GHz Processor",
-      "image": "",
+      "image": "goods_images/intel-core-i3-10100.jpg",
       "price": "119.99",
-      "discount": "0.00",
-      "quantity": 0,
+      "discount": "12.00",
+      "quantity": 3,
       "category": 3
     }
   }

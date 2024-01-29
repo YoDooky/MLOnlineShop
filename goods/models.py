@@ -23,9 +23,18 @@ class Products(models.Model):
     quantity = models.PositiveIntegerField(default=0)
     category = models.ForeignKey(to=Categories, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         verbose_name = 'product'
         verbose_name_plural = 'Products'
+
+    def __str__(self):
+        return self.name
+
+    def display_id(self) -> str:
+        return f'{self.id:05}'
+
+    def display_price_with_discount(self):
+        if self.discount:
+            # noinspection PyTypeChecker
+            return round(self.price - self.price * self.discount / 100, 2)
+        return self.price
