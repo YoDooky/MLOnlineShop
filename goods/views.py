@@ -2,6 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_list_or_404
 from django.views.generic import ListView
 
+from .forms import FilterForm
 from .models import Products
 
 
@@ -16,6 +17,11 @@ class CatalogView(ListView):
             return Products.objects.all()
         else:
             return get_list_or_404(Products.objects.filter(category__slug=self.kwargs['slug']))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = FilterForm()
+        return context
 
 
 # def catalog(req, slug):

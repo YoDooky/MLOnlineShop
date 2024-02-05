@@ -8,38 +8,32 @@
     <div class="dropdown mb-2">
         <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-            Фильтры
+            Filters
         </button>
-
-        <form action="{% url 'catalog:index' slug %}" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
+        <form action="" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
+            {% for f in form %}
+            {% if f.widget_type == "radioselect" %}
+            <p class="text-white mx-3 mt-3">{{ f.label }}:</p>
+            {% for choice_value, choice_label in f.field.choices %}
             <div class="form-check text-white mx-3">
-                <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on">
-                <input type="hidden" name="q" value="request.GET.q">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Товары по акции
-                </label>
+                <input
+                        class="form-check-input"
+                        id="flexCheckDefault"
+                        type="radio"
+                        name="{{ f.name }}"
+                        value="{{ choice_value }}"
+                        {% if f.value == choice_value %}checked{% endif %}
+                >
+                <label class="form-check-label" for="flexCheckDefault">{{ choice_label }}</label>
             </div>
-            <p class="text-white mx-3 mt-3">Сортировать:</p>
+            {% endfor %}
+            {% else %}
             <div class="form-check text-white mx-3">
-                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault1" value="default"
-                       checked>
-                <label class="form-check-label" for="flexRadioDefault1">
-                    По умолчанию
-                </label>
+                <p><label class="form-check-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
             </div>
-            <div class="form-check text-white mx-3">
-                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault2" value="price">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    От дешевых к дорогим
-                </label>
-            </div>
-            <div class="form-check text-white mx-3">
-                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault3" value="-price">
-                <label class="form-check-label" for="flexRadioDefault3">
-                    От дорогих к дешевым
-                </label>
-            </div>
-            <button type="submit" class="btn btn-primary mx-3 mt-3">Применить</button>
+            {% endif %}
+            {% endfor %}
+            <button type="submit" class="btn btn-primary mx-3 mt-3">Accept</button>
         </form>
     </div>
     {% for product in page_obj %}
