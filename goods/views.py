@@ -1,8 +1,10 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_list_or_404
 from django.views.generic import ListView
+from django.http import Http404
 
 from .models import Products
+from .utils import query_search
 
 
 class CatalogView(ListView):
@@ -14,21 +16,25 @@ class CatalogView(ListView):
     def get_queryset(self):
         on_sale = self.request.GET.get('on_sale', None)
         order_by = self.request.GET.get('order_by', None)
-        products = Products.objects
+        query = self.request.GET.get('query', None)
+
+        products = Products.objects.all()
+        if query:
+            products = query_search(query)
         if on_sale:
             products = products.filter(discount__gt=0)
         if order_by and order_by != 'default':
             products = products.order_by(order_by)
-        if self.kwargs['slug'] == 'all':
-            return products.all()
-        else:
-            return get_list_or_404(products.filter(category__slug=self.kwargs['slug']))
+        if self.kwargs.get('slug') and self.kwargs.get('slug') != 'all':
+            products = get_list_or_404(products.filter(category__slug=self.kwargs.get('slug')))
+        return products
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        context['slug'] = self.kwargs['slug']
+        context['slug'] = self.kwargs.get('slug')
         context['on_sale_filter'] = self.request.GET.get('on_sale', None)
         context['order_by_filter'] = self.request.GET.get('order_by', None)
+        context['search_filter'] = self.request.GET.get('query', None)
         return context
 
 
