@@ -1,7 +1,14 @@
 from django.db import models
 
 
-class Categories(models.Model):
+class BaseModel(models.Model):
+    objects = models.Manager()
+
+    class Meta:
+        abstract = True
+
+
+class Categories(BaseModel):
     name = models.CharField(max_length=150, unique=True)
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
 
@@ -13,7 +20,7 @@ class Categories(models.Model):
         verbose_name_plural = 'Categories'
 
 
-class Products(models.Model):
+class Products(BaseModel):
     name = models.CharField(max_length=150, unique=True)
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
     description = models.TextField(blank=True, null=True)

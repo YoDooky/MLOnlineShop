@@ -1,4 +1,4 @@
-{% extends "main/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% load goods_tags %}
 
@@ -51,8 +51,10 @@
     </div>
 
     {% if search_filter %}
-
     {% if page_obj %}
+    {% if page_obj.object_list.count < 6 %}
+    <link rel="stylesheet" href='{% static "deps/css/my_footer_css.css" %}'>
+    {% endif %}
     <div class="container mt-3">
         <div class="bg-light p-1 text-black rounded custom-shadow border border-primary">
             <h3 class="mt-1 px-3">Search result for query: {{ search_filter }}</h3>
@@ -66,7 +68,6 @@
         </div>
     </div>
     {% endif %}
-
     {% endif %}
 
     {% for product in page_obj %}
