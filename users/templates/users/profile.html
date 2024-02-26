@@ -10,21 +10,29 @@
             <div class="col-md-5">
                 <div class=" bg-white p-4 mb-4 mx-2 rounded custom-shadow">
                     <h3 class="text-center mb-4">User profile</h3>
-                    <form method="post" enctype="multipart/form-data">
+                    <form action="{% url 'users:profile' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-
                         <div class="row">
                             <div class="col-md-12 mb-3 text-center">
+                                {% if user.image %}
+                                <img src="{{ user.image.url }}"
+                                     alt="User avatar" class="img-fluid rounded-circle"
+                                     style="width: 150px; height: 150px;">
+                                {% else %}
                                 <img src="{% static '/deps/images/baseavatar.jpg' %}"
                                      alt="User avatar" class="img-fluid rounded-circle"
                                      style="max-width: 150px;">
-                                <input type="file" class="form-control mt-3" id="avatar"
+                                {% endif %}
+                                <input type="file" class="form-control mt-3" id="id_image"
+                                       name="image"
                                        accept="image/*">
                             </div>
                             {% for f in form %}
+                            {% if f.name != 'image' %}
                             <div class="col-md-12 mb-3">
                                 <p><label for="{{f.id_for_label}}" class="form-label">{{ f.label }}</label>{{ f }}</p>
                             </div>
+                            {% endif %}
                             {% endfor %}
                         </div>
                         <button type="submit" class="btn btn-dark">Save</button>

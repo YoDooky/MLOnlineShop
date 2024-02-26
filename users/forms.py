@@ -17,6 +17,7 @@ class LoginUserForm(AuthenticationForm):
 
 
 class ProfileUserForm(forms.ModelForm):
+    image = forms.ImageField(required=False)
     first_name = forms.CharField(label='Name*', widget=forms.TextInput(
         attrs={'class': 'form-control'}))
     last_name = forms.CharField(label='Surname*', widget=forms.TextInput(
@@ -28,7 +29,7 @@ class ProfileUserForm(forms.ModelForm):
 
     class Meta:
         model = get_user_model()
-        fields = ['first_name', 'last_name', 'username', 'email']
+        fields = ['image', 'first_name', 'last_name', 'username', 'email']
 
 
 class RegisterUserForm(UserCreationForm):

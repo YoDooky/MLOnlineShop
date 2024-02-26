@@ -11,6 +11,9 @@
                 <form action="{% url 'users:login' %}" method="post">
                     {% csrf_token %}
                     <div style="color: red;">{{ form.non_field_errors }}</div>
+                    {% if get_request %}
+                    <input type="hidden" name="next" value="{{ get_request }}">
+                    {% endif %}
                     {% for f in form %}
                     <div class="mb-3">
                         <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label>
