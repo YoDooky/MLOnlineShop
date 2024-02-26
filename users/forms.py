@@ -1,11 +1,25 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+
+
+class LoginUserForm(AuthenticationForm):
+    username = forms.CharField(label='Username', widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your username'
+        }))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your password'
+        }))
 
 
 class ProfileUserForm(forms.ModelForm):
-    name = forms.CharField(label='Name*', widget=forms.TextInput(
+    first_name = forms.CharField(label='Name*', widget=forms.TextInput(
         attrs={'class': 'form-control'}))
-    surname = forms.CharField(label='Surname*', widget=forms.TextInput(
+    last_name = forms.CharField(label='Surname*', widget=forms.TextInput(
         attrs={'class': 'form-control'}))
     username = forms.CharField(label='Username*', widget=forms.TextInput(
         attrs={'class': 'form-control'}))
@@ -14,35 +28,65 @@ class ProfileUserForm(forms.ModelForm):
 
     class Meta:
         model = get_user_model()
-        fields = ['name', 'surname', 'username', 'email']
+        fields = ['first_name', 'last_name', 'username', 'email']
 
 
-class RegistrationForm(forms.ModelForm):
-    name = forms.CharField(
+class RegisterUserForm(UserCreationForm):
+    first_name = forms.CharField(
         label="Name*",
-        widget=forms.TextInput(attrs={'class': 'form-control'})
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your name'
+        })
     )
-    surname = forms.CharField(
+    last_name = forms.CharField(
         label="Surname*",
-        widget=forms.TextInput(attrs={'class': 'form-control'})
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your surname'
+        })
     )
     email = forms.EmailField(
         label="Email*",
-        widget=forms.TextInput(attrs={'class': 'form-control'})
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your email'
+        })
     )
     username = forms.CharField(
         label="Username*",
-        widget=forms.TextInput(attrs={'class': 'form-control'})
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your username'
+        })
     )
     password1 = forms.CharField(
         label="Password",
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your password'
+        })
     )
     password2 = forms.CharField(
         label="Repeat Password",
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Repeat your password'
+        })
     )
 
     class Meta:
         model = get_user_model()
-        fields = ['name', 'surname', 'username', 'email', 'password']
+        fields = ['first_name', 'last_name', 'email', 'username', 'password1', 'password2']
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if get_user_model().objects.filter(email=email).exists():
+            raise forms.ValidationError('Email already exist')
+        return email
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if get_user_model().objects.filter(username=username).exists():
+            raise forms.ValidationError('Username already exist')
+        return username

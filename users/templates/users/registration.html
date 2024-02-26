@@ -8,41 +8,20 @@
         <div class="row justify-content-center">
             <div class="col-md-9 bg-white p-4 mb-5 mx-2 rounded custom-shadow">
                 <h2 class="text-center mb-4">Регистрация</h2>
-                <form>
+                <form method="post">
+                    {% csrf_token %}
+                    <div style="color: red;">{{ form.non_field_errors }}</div>
                     <div class="row">
+                        {% for f in form%}
                         <div class="col-md-6 mb-3">
-                            <label for="firstName" class="form-label">Имя*</label>
-                            <input type="text" class="form-control" id="firstName"
-                                   placeholder="Введите ваше имя" required>
+                            <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label>
+                            {{ f }}
+                           <div style="color: red;">{{ f.errors }}</div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="lastName" class="form-label">Фамилия*</label>
-                            <input type="text" class="form-control" id="lastName"
-                                   placeholder="Введите вашу фамилию" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="username" class="form-label">Имя пользователя*</label>
-                            <input type="text" class="form-control" id="username"
-                                   placeholder="Введите ваше имя пользователя" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label">Email*</label>
-                            <input type="email" class="form-control" id="email"
-                                   placeholder="Введите ваш email" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="password1" class="form-label">Пароль*</label>
-                            <input type="password" class="form-control" id="password1"
-                                   placeholder="Введите пароль" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="password2" class="form-label">Подтверждение пароля*</label>
-                            <input type="password" class="form-control" id="password2"
-                                   placeholder="Подтвердите пароль" required>
-                        </div>
+                        {% endfor %}
                     </div>
                     <button type="submit"
-                            class="btn btn-dark btn-block">Зарегистрироваться
+                            class="btn btn-dark btn-block">Sign Up
                     </button>
                 </form>
             </div>
@@ -52,9 +31,11 @@
 {% endblock %}
 
 {% block footer %}
+{% comment %}
 <footer class="py-4 bg-dark">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; YOPT PC Components 2024</p>
     </div>
 </footer>
+{% endcomment %}
 {% endblock %}

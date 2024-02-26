@@ -21,7 +21,7 @@ app_name = 'users'
 
 urlpatterns = [
     path('login/', views.LoginUser.as_view(), name='login'),
-    path('logout/', views.LogoutUser.as_view(), name='logout'),
+    path('logout/', views.logout_view, name='logout'),
     path('registration/', views.RegistrationView.as_view(), name='registration'),
     path('profile/', views.ProfileView.as_view(), name='profile'),
 ]
