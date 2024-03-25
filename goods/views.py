@@ -36,20 +36,6 @@ class CatalogView(ListView):
         return context
 
 
-# def catalog(req, slug):
-#     if slug == 'all':
-#         products = Products.objects.all()
-#     else:
-#         products = get_list_or_404(Products.objects.filter(category__slug=slug))
-#
-#     paginator = Paginator(products, per_page=6)
-#     current_page = paginator.page(1)
-#
-#     context = {
-#         'products': current_page
-#     }
-#     return render(req, 'goods/catalog.html', context)
-
 class ProductView(DetailView):
     model = Products
     template_name = 'goods/product.html'
@@ -63,10 +49,3 @@ class ProductView(DetailView):
         context = super().get_context_data()
         context[self.slug] = self.kwargs.get(self.slug)
         return context
-#
-# def product(req, slug):
-#     product = Products.objects.get(slug=slug)
-#     context = {
-#         'product': product
-#     }
-#     return render(req, 'goods/product.html', context)
