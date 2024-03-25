@@ -25,5 +25,7 @@ def cart_change(req, product_slug):
     pass
 
 
-def cart_remove(req, product_slug):
-    pass
+def cart_remove(req, cart_id):
+    if req.user.is_authenticated:
+        Cart.objects.get(pk=cart_id).delete()
+    return redirect(req.META['HTTP_REFERER'])
