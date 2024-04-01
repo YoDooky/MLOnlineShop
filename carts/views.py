@@ -1,13 +1,15 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.views.generic import ListView
+from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.template.loader import render_to_string
 
 from carts.models import Cart
+from carts.utils import get_user_carts
 from goods.models import Products
 
 
-def cart_add(req, product_slug):
-    product = Products.objects.get(slug=product_slug)
+def cart_add(req):
+    product_id = req.POST.get('product_id')
+    product = Products.objects.get(pk=product_id)
     if req.user.is_authenticated:
         carts = Cart.objects.filter(user=req.user, product=product)
         if carts.exists():
@@ -17,15 +19,49 @@ def cart_add(req, product_slug):
                 cart.save()
         else:
             Cart.objects.create(user=req.user, product=product, quantity=1)
+    # create json response to ajax
+    user_carts = get_user_carts(req)
+    cart_items_html = render_to_string(
+        'carts/includes/included_cart.html', {'carts': user_carts}, request=req
+    )
+    response_data = {
+        'message': "Item added to cart",
+        'cart_items_html': cart_items_html
+    }
+    return JsonResponse(response_data)
 
-    return redirect(req.META['HTTP_REFERER'])
 
-
-def cart_change(req, product_slug):
-    pass
-
-
-def cart_remove(req, cart_id):
+def cart_change(req):
     if req.user.is_authenticated:
+        cart_id = req.POST.get('cart_id')
+        quantity = req.POST.get('quantity')
+        Cart.objects.filter(id=cart_id).update(quantity=quantity)
+    # create json response to ajax
+    user_carts = get_user_carts(req)
+    cart_items_html = render_to_string(
+        'carts/includes/included_cart.html', {'carts': user_carts}, request=req
+    )
+    response_data = {
+        'message': "Items amount was changed",
+        'cart_items_html': cart_items_html
+    }
+    return JsonResponse(response_data)
+
+
+def cart_remove(req):
+    quantity_deleted = 1
+    if req.user.is_authenticated:
+        cart_id = req.POST.get('cart_id')
+        quantity_deleted = Cart.objects.get(pk=cart_id).quantity
         Cart.objects.get(pk=cart_id).delete()
-    return redirect(req.META['HTTP_REFERER'])
+    # create json response to ajax
+    user_carts = get_user_carts(req)
+    cart_items_html = render_to_string(
+        'carts/includes/included_cart.html', {'carts': user_carts}, request=req
+    )
+    response_data = {
+        'message': f"{quantity_deleted} Item(s) deleted from cart",
+        'quantity_deleted': quantity_deleted,
+        'cart_items_html': cart_items_html
+    }
+    return JsonResponse(response_data)

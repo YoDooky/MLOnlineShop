@@ -3,157 +3,161 @@
 {% load goods_tags %}
 
 {% block modal_cart %}
-{% include "includes/cart_button.html" %}
+    {% include "includes/cart_button.html" %}
 {% endblock %}
 
 {% block content %}
-<div class="row">
-    <!-- Форма фильтров -->
-    <div class="dropdown mb-2">
-        <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-            Filters
-        </button>
-        <form
-                action="{% if search_filter %}{% url 'catalog:search' %}{% else %}{% url 'catalog:index' slug %}{% endif %}"
-                method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
-            <div class="form-check text-white mx-3">
-                <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on_sale"
-                       {% if on_sale_filter %}checked{% endif %}>
-                {% if search_filter %}
-                <input type="hidden" name="query" value="{{ search_filter }}">
+    <div class="row">
+        <!-- Форма фильтров -->
+        <div class="dropdown mb-2">
+            <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                Filters
+            </button>
+            <form
+                    action="
+                            {% if search_filter %}{% url 'catalog:search' %}{% else %}{% url 'catalog:index' slug %}{% endif %}"
+                    method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
+                <div class="form-check text-white mx-3">
+                    <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on_sale"
+                           {% if on_sale_filter %}checked{% endif %}>
+                    {% if search_filter %}
+                        <input type="hidden" name="query" value="{{ search_filter }}">
+                    {% endif %}
+                    <label class="form-check-label" for="flexCheckDefault">
+                        On sale
+                    </label>
+                </div>
+                <p class="text-white mx-3 mt-3">Sort by:</p>
+                <div class="form-check text-white mx-3">
+                    <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault1" value="default"
+                           checked>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Default
+                    </label>
+                </div>
+                <div class="form-check text-white mx-3">
+                    <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault2" value="price"
+                           {% if order_by_filter == 'price' %}checked{% endif %}>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Ascending price
+                    </label>
+                </div>
+                <div class="form-check text-white mx-3">
+                    <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault3" value="-price"
+                           {% if order_by_filter == '-price' %}checked{% endif %}>
+                    <label class="form-check-label" for="flexRadioDefault3">
+                        Descending price
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary mx-3 mt-3">Apply</button>
+            </form>
+        </div>
+
+        {% if search_filter %}
+            {% if page_obj %}
+                {% if page_obj.object_list.count < 6 %}
+                    <link rel="stylesheet" href='{% static "deps/css/my_footer_css.css" %}'>
                 {% endif %}
-                <label class="form-check-label" for="flexCheckDefault">
-                    On sale
-                </label>
-            </div>
-            <p class="text-white mx-3 mt-3">Sort by:</p>
-            <div class="form-check text-white mx-3">
-                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault1" value="default"
-                       checked>
-                <label class="form-check-label" for="flexRadioDefault1">
-                    Default
-                </label>
-            </div>
-            <div class="form-check text-white mx-3">
-                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault2" value="price"
-                       {% if order_by_filter == 'price' %}checked{% endif %}>
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Ascending price
-                </label>
-            </div>
-            <div class="form-check text-white mx-3">
-                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault3" value="-price"
-                       {% if order_by_filter == '-price' %}checked{% endif %}>
-                <label class="form-check-label" for="flexRadioDefault3">
-                    Descending price
-                </label>
-            </div>
-            <button type="submit" class="btn btn-primary mx-3 mt-3">Apply</button>
-        </form>
-    </div>
-
-    {% if search_filter %}
-    {% if page_obj %}
-    {% if page_obj.object_list.count < 6 %}
-    <link rel="stylesheet" href='{% static "deps/css/my_footer_css.css" %}'>
-    {% endif %}
-    <div class="container mt-3">
-        <div class="bg-light p-1 text-black rounded custom-shadow border border-primary">
-            <h3 class="mt-1 px-3">Search result for query: {{ search_filter }}</h3>
-        </div>
-    </div>
-    {% else %}
-    <link rel="stylesheet" href='{% static "deps/css/my_footer_css.css" %}'>
-    <div class="container mt-3">
-        <div class="bg-light p-1 text-black rounded custom-shadow border border-primary">
-            <h3 class="mt-1 px-3">No results for query: {{ search_filter }}</h3>
-        </div>
-    </div>
-    {% endif %}
-    {% endif %}
-
-    {% for product in page_obj %}
-    <!-- Карта товара -->
-    <div class="col-lg-4 col-md-6 p-4">
-        <div class="card border-primary rounded custom-shadow">
-            {% if product.image %}
-            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                <div class="container mt-3">
+                    <div class="bg-light p-1 text-black rounded custom-shadow border border-primary">
+                        <h3 class="mt-1 px-3">Search result for query: {{ search_filter }}</h3>
+                    </div>
+                </div>
             {% else %}
-            <img src="{% static 'deps/images/not-found-image.png' %}" class="card-img-top" alt="...">
+                <link rel="stylesheet" href='{% static "deps/css/my_footer_css.css" %}'>
+                <div class="container mt-3">
+                    <div class="bg-light p-1 text-black rounded custom-shadow border border-primary">
+                        <h3 class="mt-1 px-3">No results for query: {{ search_filter }}</h3>
+                    </div>
+                </div>
             {% endif %}
-            <div class="card-body">
-                <a href="{% url 'catalog:product' slug=product.slug %}">
-                    <p class="card-title">
-                        {% autoescape off %}
-                        {% if product.headline%}
-                        {{ product.headline|truncatechars:100 }}
-                        {% else %}
-                        {{ product.name|truncatechars:50 }}
-                        {% endif %}
-                        {% endautoescape %}
-                    </p>
-                </a>
-                <p class="card-text">
-                    {% autoescape off %}
-                    {% if product.headline%}
-                    {{ product.bodyline|truncatechars:100 }}
+        {% endif %}
+
+        {% for product in page_obj %}
+            <!-- Карта товара -->
+            <div class="col-lg-4 col-md-6 p-4">
+                <div class="card border-primary rounded custom-shadow">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                     {% else %}
-                    {{ product.description|truncatechars:50 }}
+                        <img src="{% static 'deps/images/not-found-image.png' %}" class="card-img-top" alt="...">
                     {% endif %}
-                    {% endautoescape %}
-                </p>
-                <p class="product_id">id: {{ product.display_id }}</p>
-                <div class="d-flex justify-content-between">
-                    {% if product.discount %}
-                    <p><s>{{ product.display_price_with_discount }}</s> $</p>
-                    <span class="badge bg-warning text-dark">Discount {{ product.discount }} %</span>
-                    {% endif %}
-                    <p><strong>{{ product.price }} $</strong></p>
-                    <!-- <p><strong>100.00 $</strong></p> -->
-                    <a href="{% url 'cart:cart_add' product.slug %}" class="btn add-to-cart">
-                        <img class="mx-1" src="{% static 'deps/icons/cart-plus.svg' %}" alt="Catalog Icon"
-                             width="32" height="32">
-                    </a>
+                    <div class="card-body">
+                        <a href="{% url 'catalog:product' slug=product.slug %}">
+                            <p class="card-title">
+                                {% autoescape off %}
+                                    {% if product.headline %}
+                                        {{ product.headline|truncatechars:100 }}
+                                    {% else %}
+                                        {{ product.name|truncatechars:50 }}
+                                    {% endif %}
+                                {% endautoescape %}
+                            </p>
+                        </a>
+                        <p class="card-text">
+                            {% autoescape off %}
+                                {% if product.headline %}
+                                    {{ product.bodyline|truncatechars:100 }}
+                                {% else %}
+                                    {{ product.description|truncatechars:50 }}
+                                {% endif %}
+                            {% endautoescape %}
+                        </p>
+                        <p class="product_id">id: {{ product.display_id }}</p>
+                        <div class="d-flex justify-content-between">
+                            {% if product.discount %}
+                                <p><s>{{ product.price }}</s> $</p>
+                                <span class="badge bg-warning text-dark">Discount {{ product.discount }} %</span>
+                            {% endif %}
+                            <p><strong>{{ product.display_price_with_discount }} $</strong></p>
+                            <!-- <p><strong>100.00 $</strong></p> -->
+                            <a href="{% url 'cart:cart_add' %}" class="btn add-to-cart"
+                               data-product-id="{{ product.id }}">
+                                {% csrf_token %}
+                                <img class="mx-1" src="{% static 'deps/icons/cart-plus.svg' %}" alt="Catalog Icon"
+                                     width="32" height="32">
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
-<!-- Пагинация -->
-{% if page_obj.paginator.num_pages > 1 %}
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center my-4">
-        <div class="custom-shadow d-flex">
-            {% if page_obj.has_previous %}
-            <li class="page-item">
-                <a class="page-link" href="?{% change_params page=page_obj.previous_page_number %}">Previous</a>
-            </li>
-            {% endif %}
-            {% for page_num in page_obj.paginator.page_range %}
-            <li class="page-item {% if page_obj.number == page_num %} disabled {% endif %}">
-                {% if page_num >= page_obj.number|add:-2 and page_num <= page_obj.number|add:2 %}
-                <a class="page-link" href="?{% change_params page=page_num %}">{{ page_num }}</a>
-                {% endif %}
-            </li>
-            {% endfor %}
-            {% if page_obj.has_next %}
-            <li class="page-item">
-                <a class="page-link" href="?{% change_params page=page_obj.next_page_number %}">Next</a>
-            </li>
-            {% endif %}
-        </div>
-    </ul>
-</nav>
-{% endif %}
+    <!-- Пагинация -->
+    {% if page_obj.paginator.num_pages > 1 %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center my-4">
+                <div class="custom-shadow d-flex">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="?{% change_params page=page_obj.previous_page_number %}">Previous</a>
+                        </li>
+                    {% endif %}
+                    {% for page_num in page_obj.paginator.page_range %}
+                        <li class="page-item {% if page_obj.number == page_num %} disabled {% endif %}">
+                            {% if page_num >= page_obj.number|add:-2 and page_num <= page_obj.number|add:2 %}
+                                <a class="page-link" href="?{% change_params page=page_num %}">{{ page_num }}</a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% change_params page=page_obj.next_page_number %}">Next</a>
+                        </li>
+                    {% endif %}
+                </div>
+            </ul>
+        </nav>
+    {% endif %}
 
 {% endblock %}
 
 {% block footer %}
-<footer class="py-4 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; YOPT PC Components 2024</p>
-    </div>
-</footer>
+    <footer class="py-4 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; YOPT PC Components 2024</p>
+        </div>
+    </footer>
 {% endblock %}

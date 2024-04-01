@@ -14,6 +14,7 @@
     <!-- Стиль footer-a для главной страницы -->
     {% block css %}
     {% endblock %}
+
     <!-- Favicons for different platforms -->
     <link rel="apple-touch-icon" sizes="180x180" href='{% static "deps/favicon/apple-touch-icon.png" %}'>
     <link rel="icon" type="image/png" sizes="32x32" href='{% static "deps/favicon/favicon-32x32.png" %}'>
@@ -59,7 +60,7 @@
                             Profile ({{ user.username }})
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item  text-white" href="carts/cart.html">Cart</a></li>
+                            <li><a class="dropdown-item  text-white" href="{% url 'users:users_cart' %}">Cart</a></li>
                             <li><a class="dropdown-item  text-white" href="{% url 'users:profile' %}">My cabinet</a>
                             </li>
                             {% if user.is_admin or user.is_staff %}
@@ -128,7 +129,6 @@
 {% block footer %}
 {% endblock %}
 <script src='{% static "deps/js/jquery/jquery-3.7.0.min.js" %}'></script>
-<script src='{% static "deps/js/jquery-events.js" %}'></script>
 <script src='{% static "deps/js/jquery-ajax.js" %}'></script>
 <script src='{% static "deps/js/bootstrap/bootstrap.bundle.min.js" %}'></script>
 </body>
