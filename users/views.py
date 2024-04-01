@@ -5,6 +5,8 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView, CreateView
 from django.contrib import messages
+
+from carts.models import Cart
 from users.forms import ProfileUserForm, RegisterUserForm, LoginUserForm
 
 
@@ -12,8 +14,17 @@ class LoginUser(LoginView):
     form_class = LoginUserForm
     template_name = 'users/login.html'
 
+    def form_valid(self, form):
+        # save last session_key before success login
+        self.request.session['last_session_key'] = self.request.session.session_key
+        return super().form_valid(form)
+
     def get_success_url(self):
         messages.success(self.request, "Login Successfully")
+        # add unauth user cart to current successfully login user cart (via session_key)
+        last_session_key = self.request.session['last_session_key']
+        if last_session_key:
+            Cart.objects.filter(session_key=last_session_key).update(user=self.request.user)
         if self.request.POST.get('next', None):
             return self.request.POST.get('next')
         return reverse_lazy('main:index')
