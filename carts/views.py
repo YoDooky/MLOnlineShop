@@ -51,7 +51,7 @@ def cart_change(req):
         'carts/includes/included_cart.html', {'carts': user_carts}, request=req
     )
     response_data = {
-        'message': "Items amount was changed",
+        'message': "Cart items amount was changed",
         'cart_items_html': cart_items_html
     }
     return JsonResponse(response_data)

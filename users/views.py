@@ -1,12 +1,14 @@
 from django.contrib.auth import get_user_model, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.db.models import Prefetch
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView, CreateView
 from django.contrib import messages
 
 from carts.models import Cart
+from orders.models import Order, OrderItem
 from users.forms import ProfileUserForm, RegisterUserForm, LoginUserForm
 
 
@@ -48,11 +50,19 @@ class RegistrationView(CreateView):
 
 
 class ProfileView(LoginRequiredMixin, UpdateView):
-    # raise_exception = True
     model = get_user_model()
     form_class = ProfileUserForm
     template_name = 'users/profile.html'
     context_object_name = 'user'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_orders'] = Order.objects.filter(user=self.request.user).prefetch_related(
+            Prefetch(
+                'orderitem_set',
+                queryset=OrderItem.objects.select_related('product'),
+            ))
+        return context
 
     def get_success_url(self):
         messages.success(self.request, "Profile has been changed")

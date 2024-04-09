@@ -117,6 +117,7 @@ $(document).ready(function () {
         updateCart(cartID, currentValue + 1, 1, url);
     });
 
+    
     // Function to update items count in cart
     function updateCart(cartID, quantity, change, url) {
         $.ajax({
@@ -127,7 +128,6 @@ $(document).ready(function () {
                 quantity: quantity,
                 csrfmiddlewaretoken: $("[name=csrfmiddlewaretoken]").val(),
             },
-
             success: function (data) {
                 // Success notification
                 successMessage.html(data.message);
@@ -135,17 +135,14 @@ $(document).ready(function () {
                 setTimeout(function () {
                     successMessage.fadeOut(400);
                 }, 7000);
-
                 // Change items amount in cart
                 let goodsInCartCount = $("#goods-in-cart-count");
                 let cartCount = parseInt(goodsInCartCount.text() || 0);
                 cartCount += change;
                 goodsInCartCount.text(cartCount);
-
                 // Change cart content
                 let cartItemsContainer = $("#cart-items-container");
                 cartItemsContainer.html(data.cart_items_html);
-
             },
             error: function (data) {
                 console.log("Error while adding to cart");
