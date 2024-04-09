@@ -1,25 +1,20 @@
 // Waiting document load
 $(document).ready(function () {
-    // берем в переменную элемент разметки с id jq-notification для оповещений от ajax
+    // Get notification by id for ajax notifications
     let successMessage = $("#jq-notification");
 
 
-    // Ловим событие клика по кнопке добавить в корзину
+    // Event for <add to cart> button
     $(document).on("click", ".add-to-cart", function (e) {
-        // Блокируем его базовое действие
         e.preventDefault();
-
-        // Берем элемент счетчика в значке корзины и берем оттуда значение
+        // Get cart items counter value
         let goodsInCartCount = $("#goods-in-cart-count");
         let cartCount = parseInt(goodsInCartCount.text() || 0);
-
-        // Получаем id товара из атрибута data-product-id
+        // Get id from attribute data-product-id
         let product_id = $(this).data("product-id");
-
-        // Из атрибута href берем ссылку на контроллер django
+        // Get href for django controller
         let add_to_cart_url = $(this).attr("href");
-
-        // делаем post запрос через ajax не перезагружая страницу
+        // Make post req using ajax without page reload
         $.ajax({
             type: "POST",
             url: add_to_cart_url,
@@ -28,23 +23,19 @@ $(document).ready(function () {
                 csrfmiddlewaretoken: $("[name=csrfmiddlewaretoken]").val(),
             },
             success: function (data) {
-                // Сообщение
+                // Success message
                 successMessage.html(data.message);
                 successMessage.fadeIn(400);
-                // Через 7сек убираем сообщение
                 setTimeout(function () {
                     successMessage.fadeOut(400);
                 }, 7000);
-
-                // Увеличиваем количество товаров в корзине (отрисовка в шаблоне)
+                // Increase cart items
                 cartCount++;
                 goodsInCartCount.text(cartCount);
-
-                // Меняем содержимое корзины на ответ от django (новый отрисованный фрагмент разметки корзины)
+                // Change cart content in response from django (new html part for cart)
                 let cartItemsContainer = $("#cart-items-container");
                 cartItemsContainer.html(data.cart_items_html);
             },
-
             error: function (data) {
                 console.log("Error while adding item to cart");
             },
@@ -52,21 +43,17 @@ $(document).ready(function () {
     });
 
 
-    // Ловим событие клика по кнопке удалить товар из корзины
+    // Event for <remove from cart> button
     $(document).on("click", ".remove-from-cart", function (e) {
-        // Блокируем его базовое действие
         e.preventDefault();
-
-        // Берем элемент счетчика в значке корзины и берем оттуда значение
+        // Get cart items counter value
         let goodsInCartCount = $("#goods-in-cart-count");
         let cartCount = parseInt(goodsInCartCount.text() || 0);
-
-        // Получаем id корзины из атрибута data-cart-id
+        // Get id from attribute data-product-id
         let cart_id = $(this).data("cart-id");
-        // Из атрибута href берем ссылку на контроллер django
+        // Get href for django controller
         let remove_from_cart = $(this).attr("href");
-
-        // делаем post запрос через ajax не перезагружая страницу
+        // Make post req using ajax without page reload
         $.ajax({
             type: "POST",
             url: remove_from_cart,
@@ -75,23 +62,19 @@ $(document).ready(function () {
                 csrfmiddlewaretoken: $("[name=csrfmiddlewaretoken]").val(),
             },
             success: function (data) {
-                // Сообщение
+                 // Success message
                 successMessage.html(data.message);
                 successMessage.fadeIn(400);
-                // Через 7сек убираем сообщение
                 setTimeout(function () {
                     successMessage.fadeOut(400);
                 }, 7000);
-
-                // Уменьшаем количество товаров в корзине (отрисовка)
+                // Decrease cart items
                 cartCount -= data.quantity_deleted;
                 goodsInCartCount.text(cartCount);
-
-                // Меняем содержимое корзины на ответ от django (новый отрисованный фрагмент разметки корзины)
+                // Change cart content in response from django (new html part for cart)
                 let cartItemsContainer = $("#cart-items-container");
                 cartItemsContainer.html(data.cart_items_html);
             },
-
             error: function (data) {
                 console.log("Ошибка при добавлении товара в корзину");
             },
@@ -99,44 +82,42 @@ $(document).ready(function () {
     });
 
 
-    // Теперь + - количества товара
-
-    // Обработчик события для уменьшения значения
+    // Event for <-> button
     $(document).on("click", ".decrement", function () {
-        // Берем ссылку на контроллер django из атрибута data-cart-change-url
+        // Get href for django controller from data-cart-change-url attribute
         let url = $(this).data("cart-change-url");
-        // Берем id корзины из атрибута data-cart-id
+        // Get cart id from data-cart-id attribute
         let cartID = $(this).data("cart-id");
-        // Ищем ближайший input с количеством
+        // Get near input with cart items count
         let closestInput = $(this).closest('.input-group').find('.number');
-        // Берем значение количества товара
+        // Get current items count from cart
         let currentValue = parseInt(closestInput.val());
-        // Если количества больше одного, то только тогда делаем -1
+        // Decrease cart items count only if items amount more than 1
         if (currentValue > 1) {
             closestInput.val(currentValue - 1);
-            // Запускаем функцию определенную ниже
-            // с аргументами (id карты, новое количество, количество уменьшилось или прибавилось, url)
+            // Update items in cart
             updateCart(cartID, currentValue - 1, -1, url);
         }
     });
 
-    // Обработчик события для увеличения значения
+
+    // Event for <+> button
     $(document).on("click", ".increment", function () {
-        // Берем ссылку на контроллер django из атрибута data-cart-change-url
+        // Get href for django controller from data-cart-change-url attribute
         let url = $(this).data("cart-change-url");
-        // Берем id корзины из атрибута data-cart-id
+        // Get cart id from data-cart-id attribute
         let cartID = $(this).data("cart-id");
-        // Ищем ближайшеий input с количеством
+        // Get near input with cart items count
         let closestInput = $(this).closest('.input-group').find('.number');
-        // Берем значение количества товара
+        // Get current items count from cart
         let currentValue = parseInt(closestInput.val());
-        // Увеличиваем количество товара
+        // Increase cart items count
         closestInput.val(currentValue + 1);
-        // Запускаем функцию определенную ниже
-        // с аргументами (id карты, новое количество, количество уменьшилось или прибавилось, url)
+        // Update items in cart
         updateCart(cartID, currentValue + 1, 1, url);
     });
 
+    // Function to update items count in cart
     function updateCart(cartID, quantity, change, url) {
         $.ajax({
             type: "POST",
@@ -148,41 +129,39 @@ $(document).ready(function () {
             },
 
             success: function (data) {
-                // Сообщение
+                // Success notification
                 successMessage.html(data.message);
                 successMessage.fadeIn(400);
-                // Через 7сек убираем сообщение
                 setTimeout(function () {
                     successMessage.fadeOut(400);
                 }, 7000);
 
-                // Изменяем количество товаров в корзине
+                // Change items amount in cart
                 let goodsInCartCount = $("#goods-in-cart-count");
                 let cartCount = parseInt(goodsInCartCount.text() || 0);
                 cartCount += change;
                 goodsInCartCount.text(cartCount);
 
-                // Меняем содержимое корзины
+                // Change cart content
                 let cartItemsContainer = $("#cart-items-container");
                 cartItemsContainer.html(data.cart_items_html);
 
             },
             error: function (data) {
-                console.log("Ошибка при добавлении товара в корзину");
+                console.log("Error while adding to cart");
             },
         });
     }
 
-    // Берем из разметки элемент по id - оповещения от django
+    //  Get notification element by id
     let notification = $('#notification');
-    // И через 5 сек. убираем
     if (notification.length > 0) {
         setTimeout(function () {
             notification.alert('close');
         }, 5000);
     }
 
-    // При клике по значку корзины открываем всплывающее(модальное) окно
+    // Event for button <cart> (to show it)
     $('#modalButton').click(function () {
         let modalWindow = $('#exampleModal')
         modalWindow.appendTo('body');
@@ -190,16 +169,16 @@ $(document).ready(function () {
         modalWindow.modal('show');
     });
 
-    // Событие клик по кнопке закрыть окна корзины
+    // Event for close cart (in modal window) button
     $('#exampleModal .btn-close').click(function () {
         $('#exampleModal').modal('hide');
     });
 
-    // Обработчик события радиокнопки выбора способа доставки
+    // Event for delivery method radiobutton
     $("input[name='requires_delivery']").change(function () {
         let selectedValue = $(this).val();
-        // Скрываем или отображаем input ввода адреса доставки
-        if (selectedValue === "1") {
+        // Hide or show delivery address fiedl
+        if (selectedValue === "0") {
             $("#deliveryAddressField").show();
         } else {
             $("#deliveryAddressField").hide();

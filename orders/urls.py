@@ -19,18 +19,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 from app import settings
+from orders import views
+
+app_name = 'orders'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('main.urls', namespace='main')),
-    path('catalog/', include('goods.urls', namespace='catalog')),
-    path('users/', include('users.urls', namespace='users')),
-    path('cart/', include('carts.urls', namespace='cart')),
-    path('orders/', include('orders.urls', namespace='orders'))
+    path('create_order/', views.CreateOrderView.as_view(), name='create_order'),
 ]
-
-if settings.DEBUG:
-    urlpatterns += [
-        path("__debug__/", include("debug_toolbar.urls"))
-    ]
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

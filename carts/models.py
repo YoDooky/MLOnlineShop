@@ -23,7 +23,7 @@ class Cart(models.Model):
 
     class Meta:
         verbose_name = 'cart'
-        verbose_name_plural = 'carts'
+        verbose_name_plural = 'Carts'
 
     objects = CartQueryset().as_manager()
 
