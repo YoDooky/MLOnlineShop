@@ -1,8 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.db import transaction
-from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, View, FormView
+from django.views.generic import FormView
 from django.contrib import messages
 
 from carts.models import Cart
@@ -64,5 +63,6 @@ class CreateOrderView(FormView):
                 cart_items.delete()
                 messages.success(self.request, 'Order was successfully done')
         except ValidationError as ex:
-            messages.success(self.request, str(*ex))
+            messages.warning(self.request, str(*ex))
+            return super().form_invalid(form)
         return super().form_valid(form)

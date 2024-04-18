@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model, logout
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.db.models import Prefetch
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
@@ -74,3 +75,12 @@ class ProfileView(LoginRequiredMixin, UpdateView):
 
 def users_cart(req):
     return render(req, 'users/users_cart.html')
+
+
+class UserPasswordChangeView(PasswordChangeView):
+    template_name = 'users/password_change.html'
+    success_url = reverse_lazy("users:profile")
+
+    def get_success_url(self):
+        messages.success(self.request, "Password has been changed")
+        return reverse_lazy('users:profile')

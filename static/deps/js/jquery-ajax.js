@@ -62,7 +62,7 @@ $(document).ready(function () {
                 csrfmiddlewaretoken: $("[name=csrfmiddlewaretoken]").val(),
             },
             success: function (data) {
-                 // Success message
+                // Success message
                 successMessage.html(data.message);
                 successMessage.fadeIn(400);
                 setTimeout(function () {
@@ -117,7 +117,7 @@ $(document).ready(function () {
         updateCart(cartID, currentValue + 1, 1, url);
     });
 
-    
+
     // Function to update items count in cart
     function updateCart(cartID, quantity, change, url) {
         $.ajax({
@@ -171,11 +171,23 @@ $(document).ready(function () {
         $('#exampleModal').modal('hide');
     });
 
-    // Event for delivery method radiobutton
+
+    // Events for delivery method radiobutton
     $("input[name='requires_delivery']").change(function () {
         let selectedValue = $(this).val();
-        // Hide or show delivery address fiedl
+        // Hide or show delivery address field
         if (selectedValue === "0") {
+            $("#deliveryAddressField").show();
+        } else {
+            $("#deliveryAddressField").hide();
+        }
+    });
+    // To update delivery address state (show/hide) on page update
+    let deliveryRadiobutton = $("input[id='id_requires_delivery_0']")
+    deliveryRadiobutton.ready(function () {
+        let selectedValue = $("input[id='id_requires_delivery_0']").is(":checked");
+        // Hide or show delivery address field
+        if (selectedValue === true) {
             $("#deliveryAddressField").show();
         } else {
             $("#deliveryAddressField").hide();
