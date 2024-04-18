@@ -27,6 +27,7 @@ def cart_add(req):
                 cart.quantity += 1
                 cart.save()
         else:
+
             Cart.objects.create(session_key=req.session.session_key, product=product, quantity=1)
     # create json response to ajax
     user_carts = get_user_carts(req)

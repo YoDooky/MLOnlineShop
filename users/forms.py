@@ -4,7 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
 class LoginUserForm(AuthenticationForm):
-    username = forms.CharField(label='Username', widget=forms.TextInput(
+    username = forms.CharField(label='Username or Email', widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'Enter your username'

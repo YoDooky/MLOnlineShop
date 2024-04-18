@@ -52,7 +52,7 @@ class CreateOrderView(FormView):
                         raise ValidationError(f'Not enough product <{name}> on stock. '
                                               f'In stock - {product.quantity}')
 
-                    OrderItem.object.create(
+                    OrderItem.objects.create(
                         order=order,
                         product=product,
                         name=name,
@@ -64,5 +64,5 @@ class CreateOrderView(FormView):
                 cart_items.delete()
                 messages.success(self.request, 'Order was successfully done')
         except ValidationError as ex:
-            messages.success(self.request, str(ex))
+            messages.success(self.request, str(*ex))
         return super().form_valid(form)
