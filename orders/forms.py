@@ -4,8 +4,8 @@ import re
 
 
 class Delivery(models.IntegerChoices):
-    DELIVERY = 0, 'Delivery'
-    PICKUP = 1, 'Self pickup'
+    DELIVERY = 0, 'Self pickup'
+    PICKUP = 1, 'Delivery'
 
 
 class Payment(models.IntegerChoices):

@@ -38,8 +38,10 @@
                             </div>
                             <button type="submit" class="btn btn-dark">Save</button>
                         </form>
-                        <hr>
-                        <p><a href="{% url 'users:password_change' %}">Change password</a></p>
+                        {% if not perms.users.social_auth %}
+                            <hr>
+                            <p><a href="{% url 'users:password_change' %}">Change password</a></p>
+                        {% endif %}
                     </div>
                 </div>
                 <!-- Корзина -->

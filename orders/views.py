@@ -4,12 +4,14 @@ from django.urls import reverse_lazy
 from django.views.generic import FormView
 from django.contrib import messages
 
+
 from carts.models import Cart
 from orders.forms import OrderForm
 from orders.models import Order, OrderItem
+from users.utils import UserLoginRequiredMixin
 
 
-class CreateOrderView(FormView):
+class CreateOrderView(UserLoginRequiredMixin, FormView):
     form_class = OrderForm
     template_name = 'orders/create_order.html'
     context_object_name = 'order'
@@ -47,9 +49,13 @@ class CreateOrderView(FormView):
                     price = item.products_price()
                     quantity = item.quantity
 
+                    # validation
                     if product.quantity < quantity:
                         raise ValidationError(f'Not enough product <{name}> on stock. '
                                               f'In stock - {product.quantity}')
+                    if int(form.cleaned_data['requires_delivery']):
+                        if not form.cleaned_data['delivery_address']:
+                            raise ValidationError('Delivery address is empty')
 
                     OrderItem.objects.create(
                         order=order,

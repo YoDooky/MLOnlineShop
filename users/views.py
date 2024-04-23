@@ -1,12 +1,14 @@
-from django.contrib.auth import get_user_model, logout
+from django.contrib.auth import get_user_model, logout, login
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView, PasswordChangeView
+from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordResetView, PasswordResetDoneView, \
+    PasswordResetConfirmView
 from django.db.models import Prefetch
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView, CreateView
 from django.contrib import messages
+from social_django.utils import psa
 
 from carts.models import Cart
 from orders.models import Order, OrderItem
@@ -79,8 +81,26 @@ def users_cart(req):
 
 class UserPasswordChangeView(PasswordChangeView):
     template_name = 'users/password_change.html'
-    success_url = reverse_lazy("users:profile")
+    success_url = reverse_lazy("users:profile")  # del
 
     def get_success_url(self):
         messages.success(self.request, "Password has been changed")
+        return reverse_lazy('users:profile')
+
+
+class UserPasswordResetView(PasswordResetView):
+    template_name = 'users/password_reset_form.html'
+    email_template_name = 'users/password_reset_email.html'
+    success_url = reverse_lazy("users:password_reset_done")
+
+
+class UserPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'users/password_reset_done.html'
+
+
+class UserPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'users/password_reset_confirm.html'
+
+    def get_success_url(self):
+        messages.success(self.request, "You have been successfully reset your password. Please login")
         return reverse_lazy('users:profile')

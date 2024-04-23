@@ -176,7 +176,7 @@ $(document).ready(function () {
     $("input[name='requires_delivery']").change(function () {
         let selectedValue = $(this).val();
         // Hide or show delivery address field
-        if (selectedValue === "0") {
+        if (selectedValue === "1") {
             $("#deliveryAddressField").show();
         } else {
             $("#deliveryAddressField").hide();
@@ -187,7 +187,7 @@ $(document).ready(function () {
     deliveryRadiobutton.ready(function () {
         let selectedValue = $("input[id='id_requires_delivery_0']").is(":checked");
         // Hide or show delivery address field
-        if (selectedValue === true) {
+        if (selectedValue === false) {
             $("#deliveryAddressField").show();
         } else {
             $("#deliveryAddressField").hide();
