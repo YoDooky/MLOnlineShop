@@ -22,7 +22,7 @@ def create_social_group_with_perm(apps, schema_editor):
             name='Social Auth',
             content_type=content_type
         )
-    social_group.first().permissions.add(social_perm.first())
+    social_group.permissions.add(social_perm)
     social_group.save()
 
 

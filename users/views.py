@@ -1,5 +1,4 @@
-from django.contrib.auth import get_user_model, logout, login
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import get_user_model, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordResetView, PasswordResetDoneView, \
     PasswordResetConfirmView
@@ -8,7 +7,6 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView, CreateView
 from django.contrib import messages
-from social_django.utils import psa
 
 from carts.models import Cart
 from orders.models import Order, OrderItem
