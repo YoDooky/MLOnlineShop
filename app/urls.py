@@ -17,8 +17,14 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.sitemaps.views import sitemap
 
 from app import settings
+from goods.sitemaps import ProductsSitemap
+
+sitemaps = {
+    'products': ProductsSitemap
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,7 +33,9 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
     path('cart/', include('carts.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
-    path('social-auth/', include('social_django.urls', namespace='social'))
+    path('social-auth/', include('social_django.urls', namespace='social')),
+
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
 
 if settings.DEBUG:

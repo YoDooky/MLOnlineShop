@@ -40,11 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'django.contrib.postgres',
+
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 
     'django_extensions',
 
     'debug_toolbar',
+
     'social_django',
 
     'main',
@@ -205,3 +210,5 @@ SOCIAL_AUTH_PIPELINE = [
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
 ]
+
+SITE_ID = 1

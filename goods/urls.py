@@ -23,5 +23,5 @@ app_name = 'catalog'
 urlpatterns = [
     path('search/', cache_page(60)(views.CatalogView.as_view()), name='search'),
     path('<slug:slug>/', cache_page(60)(views.CatalogView.as_view()), name='index'),
-    path('product/<slug:slug>/', cache_page(60)(views.ProductView.as_view()), name='product')
+    path('product/<slug:slug>/', cache_page(60)(views.ProductView.as_view()), name='product'),
 ]
