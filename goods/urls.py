@@ -16,12 +16,12 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
+from django.views.decorators.cache import cache_page
 
 app_name = 'catalog'
 
 urlpatterns = [
-    # path('<slug:slug>/', views.catalog, name='index'),
-    path('search/', views.CatalogView.as_view(), name='search'),
-    path('<slug:slug>/', views.CatalogView.as_view(), name='index'),
-    path('product/<slug:slug>/', views.ProductView.as_view(), name='product')
+    path('search/', cache_page(60)(views.CatalogView.as_view()), name='search'),
+    path('<slug:slug>/', cache_page(60)(views.CatalogView.as_view()), name='index'),
+    path('product/<slug:slug>/', cache_page(60)(views.ProductView.as_view()), name='product')
 ]

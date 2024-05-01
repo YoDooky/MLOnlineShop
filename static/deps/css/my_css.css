@@ -36,3 +36,10 @@ body {
   border-radius: 15px;
   font-size: 0.7rem;
 }
+
+.text-contour {
+  color: #babbbc;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #babbbc;
+  -webkit-text-fill-color: #1a1d20;
+}

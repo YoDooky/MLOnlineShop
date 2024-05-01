@@ -1,20 +1,22 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from goods.models import Categories
+from django.views.generic.base import TemplateView
 
 
-def index(req):
-    context = {
-        'title': 'YOPT - Main page',
-        'content': '',  # Build YOUR PC
-    }
-    return render(req, 'main/index.html', context)
+class IndexView(TemplateView):
+    template_name = 'main/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'YOPT - Main page'
+        context['content'] = 'YOPT - Your Optimal Parts & Technology'
+        return context
 
 
-def about(req):
-    context = {
-        'title': 'YOPT - About us',
-        'content': 'About us',
-        'text_on_page': 'Bla bla bla bla bla bla bla 🤢'
-    }
-    return render(req, 'main/about.html', context)
+class AboutView(TemplateView):
+    template_name = 'main/about.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'YOPT - Main page'
+        context['content'] = 'About us'
+        context['text_on_page'] = 'About us'
+        return context
