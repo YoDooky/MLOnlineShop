@@ -13,13 +13,13 @@ ENV PYTHONUNBUFFERED 1
 RUN pip install --upgrade pip
 
 RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
-    libpq-dev libmariadb-dev libmariadb-dev-compat gettext cron openssh-client flake8 locales vim
+    libpq-dev gettext cron openssh-client flake8 locales vim
 
 RUN useradd -rms /bin/bash $USERNAME && chmod 777 /opt /run
 
 WORKDIR /$FOLDER
 
-RUN mkdir /$FOLDER/static && mkdir /$FOLDER/media && chown -R $USERNAME:$USERNAME /$FOLDER && chmod 755 /yt
+RUN mkdir /$FOLDER/static && mkdir /$FOLDER/media && chown -R $USERNAME:$USERNAME /$FOLDER && chmod 755 /$FOLDER
 
 COPY --chown=$USERNAME:$USERNAME . .
 
