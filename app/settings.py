@@ -43,12 +43,12 @@ INSTALLED_APPS = [
 
     'django.contrib.postgres',
 
+    'debug_toolbar',
+
     'django.contrib.sites',
     'django.contrib.sitemaps',
 
     'django_extensions',
-
-    'debug_toolbar',
 
     'social_django',
 

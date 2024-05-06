@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
+from django.views.decorators.cache import cache_page
 
 from app import settings
 from goods.sitemaps import ProductsSitemap
@@ -35,7 +36,7 @@ urlpatterns = [
     path('orders/', include('orders.urls', namespace='orders')),
     path('social-auth/', include('social_django.urls', namespace='social')),
 
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('sitemap.xml', cache_page(86400)(sitemap), {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
 
 if settings.DEBUG:
