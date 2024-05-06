@@ -1,4 +1,5 @@
 version: "3.9"
+
 services:
   postgres_svc:
     image: postgres:15
@@ -17,7 +18,7 @@ services:
       - media_volume:/shop/media
     env_file:
       - .env
-    command: bash -c "chmod +x manage.py  && ./manage.py collectstatic --noinput && ./manage.py migrate  && gunicorn -b 0.0.0.0:8000 app.wsgi"
+    command: bash -c "chmod +x manage.py && ./manage.py collectstatic --noinput && ./manage.py migrate && gunicorn -b 0.0.0.0:8000 app.wsgi"
   nginx_svc:
     build:
       dockerfile: ./Dockerfile
