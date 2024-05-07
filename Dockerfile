@@ -3,17 +3,17 @@ FROM python:3.12
 SHELL ["/bin/bash", "-c"]
 
 # set project variables
-FOLDER="shop"
-USERNAME="dooky"
+ARG FOLDER="shop"
+ARG USERNAME="dooky"
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN pip install --upgrade pip
+RUN pip3 install --upgrade pip
 
-RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
-    libpq-dev gettext cron openssh-client flake8 locales vim
+RUN apt update
+RUN apt -qy install gcc libjpeg-dev libxslt-dev libpq-dev gettext cron openssh-client locales vim
 
 RUN useradd -rms /bin/bash $USERNAME && chmod 777 /opt /run
 
