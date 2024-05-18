@@ -2,36 +2,55 @@ version: "3.9"
 
 services:
   postgres_svc:
-    image: postgres:15
-    container_name: postgres
+    build:
+      context: ./docker/postgres/
+      dockerfile: ./Dockerfile
+    container_name: postgres_container
+    image: postgres_img
     volumes:
       - ./pg_data:/var/lib/postgresql/data
     env_file:
       - .env
+    ports:
+      - "5433:${POSTGRES_PORT}"
   django_svc:
-    image: django:latest
-    container_name: django
+    container_name: django_container
+    image: django_img:latest
     depends_on:
       - postgres_svc
     volumes:
       - static_volume:/shop/static
       - media_volume:/shop/media
+      - ./fixtures/to_docker:/shop/fixtures
     env_file:
       - .env
-    command: bash -c "chmod +x manage.py && ./manage.py collectstatic --noinput && ./manage.py migrate && gunicorn -b 0.0.0.0:8000 app.wsgi"
+    command: bash -c "chmod +x manage.py \
+      && ./manage.py collectstatic --noinput \ 
+      && ./manage.py migrate \
+      && ./manage.py loaddata /shop/fixtures/categories.json /shop/fixtures/products.json \
+      && gunicorn -b 0.0.0.0:8000 app.wsgi"
   nginx_svc:
     build:
-      dockerfile: ./Dockerfile
       context: ./docker/nginx/
-    container_name: nginx
-    image: nginx
+      dockerfile: ./Dockerfile
+    container_name: nginx_container
+    image: nginx_img
     volumes:
       - static_volume:/shop/static
       - media_volume:/shop/media
     depends_on:
       - django_svc
     ports:
-      - "${NGINX_EXTERNAL_PORT}:80"
+      - "${NGINX_EXTERNAL_PORT}:${NGINX_EXTERNAL_PORT}"
+  redis_svc:
+    container_name: redis_container
+    image: redis:latest
+    volumes:
+      - ./redis_data:/data
+    depends_on:
+      - django_svc
+    ports:
+      - "6380:6379"
 
 volumes:
   static_volume:

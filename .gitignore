@@ -162,3 +162,5 @@ cython_debug/
 media/
 cert.crt
 cert.key
+pg_data
+redis_data

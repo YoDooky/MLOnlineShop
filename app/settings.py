@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
+# load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-i2z(f6vz=jricolwolvba@d**@84v$tzpnm4bfk&v^%-acgawu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
+    '0.0.0.0',
     'localhost',
     '127.0.0.1',
     'yopt-online-test.space'
@@ -102,19 +104,19 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'shop',
-        'USER': 'shop',
-        'PASSWORD': 'fill13rect',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': os.getenv('POSTGRES_PORT')
     }
 }
 
 CACHES = {
     "default": {
-        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
-        # "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        # "LOCATION": "redis://127.0.0.1:6379",
+        # "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://redis_container:6379",
     }
 }
 
@@ -151,10 +153,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = 'static'
-# STATICFILES_DIRS = [
-#     BASE_DIR / 'static'
-# ]
+if DEBUG:
+    STATICFILES_DIRS = [
+        BASE_DIR / 'static'
+    ]
+else:
+    STATIC_ROOT = 'static'
 MEDIA_URL = 'media/'
 # MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_ROOT = 'media'
@@ -162,6 +166,25 @@ MEDIA_ROOT = 'media'
 INTERNAL_IPS = [
     '127.0.0.1'
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': './log/debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -179,11 +202,10 @@ AUTHENTICATION_BACKENDS = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-load_dotenv()
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
-EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
+# EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
