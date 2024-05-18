@@ -20,11 +20,8 @@ RUN useradd -rms /bin/bash $USERNAME && chmod 777 /opt /run
 
 WORKDIR /$FOLDER
 
-RUN mkdir /$FOLDER/log
-RUN touch /$FOLDER/log/debug.log
-
 RUN mkdir /$FOLDER/fixtures && mkdir /$FOLDER/static && mkdir /$FOLDER/media && chown -R $USERNAME:$USERNAME /$FOLDER && chmod 755 /$FOLDER
-
+RUN apt install nano
 
 COPY --chown=$USERNAME:$USERNAME . .
 
