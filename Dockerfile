@@ -14,6 +14,7 @@ RUN pip3 install --upgrade pip
 
 RUN apt-get update
 RUN apt-get -qy install gcc libjpeg-dev libxslt-dev libpq-dev gettext cron openssh-client locales vim
+RUN apt install nano
 
 RUN useradd -rms /bin/bash $USERNAME && chmod 777 /opt /run
 
